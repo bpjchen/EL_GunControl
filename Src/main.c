@@ -29,6 +29,7 @@
 
 #include "APPInteraction.h"
 #include "stdio.h"
+#include "Control.h"
 
 /* USER CODE END Includes */
 
@@ -93,11 +94,14 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_TIM3_Init();
   MX_TIM4_Init();
   MX_USART1_UART_Init();
   MX_TIM14_Init();
   /* USER CODE BEGIN 2 */
   HAL_TIM_Base_Start_IT(&htim14);  //使能TIM14中断，溢出时间为1ms
+  HAL_TIM_PWM_Start(&htim3,TIM_CHANNEL_3);  //开启定时器3、通道1，频率50Hz，产生周期为20ms的脉冲，用于舵机的控制
+  HAL_TIM_PWM_Start(&htim3,TIM_CHANNEL_4);  //开启定时器3、通道2，频率50Hz，产生周期为20ms的脉冲，用于舵机的控制
   APPInteractionInit();
   /* USER CODE END 2 */
 
@@ -108,6 +112,11 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+      if(Ctrl) //1000Hz
+      {
+          Ctrl = 0;
+          SteeringEngineControl();
+      }
   }
   /* USER CODE END 3 */
 }
@@ -157,9 +166,15 @@ void SystemClock_Config(void)
 /* USER CODE BEGIN 4 */
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
-    
+    static uint16_t ms1 = 0;
     if (htim->Instance == TIM14)
     {
+        ms1++;
+        if(ms1 >= 1) //1000Hz
+        {
+            ms1 = 0;
+            Ctrl = 1;
+        }
 //        printf("\n\r Hello!\n\r");
     }
     

@@ -39,4 +39,4 @@ test1\usmart_config.o: D:\keil_MDK5.25\ARM\ARMCC\Bin\..\include\string.h
 test1\usmart_config.o: D:\keil_MDK5.25\ARM\ARMCC\Bin\..\include\stdbool.h
 test1\usmart_config.o: ..\UserLib\APPInteraction.h
 test1\usmart_config.o: D:\keil_MDK5.25\ARM\ARMCC\Bin\..\include\stdio.h
-test1\usmart_config.o: ..\UserLib\MotorControl.h
+test1\usmart_config.o: ..\UserLib\Control.h

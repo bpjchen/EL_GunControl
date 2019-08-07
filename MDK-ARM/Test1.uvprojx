@@ -337,7 +337,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32F407xx</Define>
               <Undefine></Undefine>
-              <IncludePath>../Inc; ../Drivers/STM32F4xx_HAL_Driver/Inc; ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy; ../Drivers/CMSIS/Device/ST/STM32F4xx/Include; ../Drivers/CMSIS/Include; ..\UserLib; ..\UserLib\USMART</IncludePath>
+              <IncludePath>../Inc;      ../Drivers/STM32F4xx_HAL_Driver/Inc;      ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;      ../Drivers/CMSIS/Device/ST/STM32F4xx/Include;      ../Drivers/CMSIS/Include;      ..\UserLib;      ..\UserLib\USMART</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -532,14 +532,14 @@
               <FilePath>..\UserLib\mytype.h</FilePath>
             </File>
             <File>
-              <FileName>MotorControl.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\UserLib\MotorControl.c</FilePath>
-            </File>
-            <File>
               <FileName>pid.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\UserLib\pid.c</FilePath>
+            </File>
+            <File>
+              <FileName>Control.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\UserLib\Control.c</FilePath>
             </File>
           </Files>
         </Group>
