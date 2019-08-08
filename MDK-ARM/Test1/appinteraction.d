@@ -41,3 +41,4 @@ test1\appinteraction.o: ..\UserLib\USMART\usmart_str.h
 test1\appinteraction.o: ../Inc/usart.h
 test1\appinteraction.o: ../Inc/main.h
 test1\appinteraction.o: ../Inc/tim.h
+test1\appinteraction.o: D:\keil_MDK5.25\ARM\ARMCC\Bin\..\include\stdio.h

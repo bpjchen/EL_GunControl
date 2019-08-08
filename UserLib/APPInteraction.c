@@ -11,11 +11,18 @@
 #include "usmart.h"
 #include "usart.h"
 #include "tim.h"
+#include "stdio.h"
 
+
+//u8 Urxbuf[2],rxbuf[2],Usart_Flag;
 
 u8  USART_RX_BUF[USART_REC_LEN];  //接收缓冲,最大USART_REC_LEN个字节.末字节为换行符 
 u16 USART_RX_STA = 0;  //接收状态标记	
 u8 aRxBuffer[RXBUFFERSIZE];//HAL库USART接收Buffer
+
+/*用于openmv的数据接收，USART2*/
+u8 aRxBuffer2[1], usart2_rxbuffer[2];
+int32_t Position_X,Position_Y;  //目标位置的坐标
 
 
 /**********************************************************************************************************************
@@ -42,6 +49,7 @@ void APPInteractionInit(void)
 **********************************************************************************************************************/
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
+   
 	if(huart->Instance==USART1)//如果是串口1
 	{
 		if((USART_RX_STA&0x8000)==0)//接收未完成
@@ -66,6 +74,10 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 		}
 
 	}
+    if(huart->Instance==USART2)
+    {
+        OpenmvDataReceive();  /*Openmv数据接收*/
+    }
     
 }
 
@@ -83,7 +95,7 @@ void Reset_Usart1_Receive_IT(void)
     timeout=0;
     while (HAL_UART_GetState(&huart1) != HAL_UART_STATE_READY)//等待就绪
     {
-         timeout++;////超时处理
+         timeout++;//超时处理
          if(timeout>HAL_MAX_DELAY) break;		
     }
      
@@ -116,3 +128,36 @@ void UsmartScan(void)
   
 }
 
+
+
+void OpenmvDataReceive(void)
+{
+    static uint8_t count=0,Usart_Flag_1,Usart_Flag_2;
+    if(Usart_Flag_2 == 1)
+    {
+        usart2_rxbuffer[count] = aRxBuffer2[0];
+        count++;
+        if(count == 2)
+        {
+
+            Position_X = usart2_rxbuffer[0];
+            Position_Y = usart2_rxbuffer[1];
+            printf("\n\rPosition_X is:%d,Position_Y is:%d\n\r",Position_X,Position_Y);
+            
+            count = 0;
+            Usart_Flag_1 = 0;
+            Usart_Flag_2 = 0;
+        }
+        
+    }
+    if(aRxBuffer2[0] == 0xff)
+    {
+        Usart_Flag_1 = 1;
+    }
+    if((Usart_Flag_1 == 1)&&(aRxBuffer2[0] == 0xfe))
+    {
+        Usart_Flag_2 = 1;  
+    }
+    HAL_UART_Receive_IT(&huart2,(uint8_t *)aRxBuffer2,1);
+    
+}

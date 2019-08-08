@@ -36,6 +36,7 @@
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
 
+//int32_t Position_X,Position_Y;
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -98,10 +99,12 @@ int main(void)
   MX_TIM4_Init();
   MX_USART1_UART_Init();
   MX_TIM14_Init();
+  MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
+  HAL_UART_Receive_IT(&huart2,(uint8_t *)aRxBuffer2,1);  //使能串口2接收中断，用于Openmv的数据接收
   HAL_TIM_Base_Start_IT(&htim14);  //使能TIM14中断，溢出时间为1ms
-  HAL_TIM_PWM_Start(&htim3,TIM_CHANNEL_3);  //开启定时器3、通道1，频率50Hz，产生周期为20ms的脉冲，用于舵机的控制
-  HAL_TIM_PWM_Start(&htim3,TIM_CHANNEL_4);  //开启定时器3、通道2，频率50Hz，产生周期为20ms的脉冲，用于舵机的控制
+  HAL_TIM_PWM_Start(&htim3,TIM_CHANNEL_3);  //开启定时器3、通道3，频率50Hz，产生周期为20ms的脉冲，用于舵机的控制
+  HAL_TIM_PWM_Start(&htim3,TIM_CHANNEL_4);  //开启定时器3、通道4，频率50Hz，产生周期为20ms的脉冲，用于舵机的控制
   APPInteractionInit();
   /* USER CODE END 2 */
 
@@ -116,6 +119,13 @@ int main(void)
       {
           Ctrl = 0;
           SteeringEngineControl();
+          
+//          if(Usart_Flag==0 )  memcpy(rxbuf,Urxbuf,2*sizeof(u8));	//接收完成   复制Urxbuf数组中的数据到rxbuf
+		  
+//		  Position_X=usart2_rxbuffer[0];
+//          Position_Y=usart2_rxbuffer[1];
+//          
+//          printf("\n\rPosition_X is:%d,Position_Y is:%d\n\r",Position_X,Position_Y);
       }
   }
   /* USER CODE END 3 */
