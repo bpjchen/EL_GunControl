@@ -22,7 +22,7 @@ u8 aRxBuffer[RXBUFFERSIZE];//HAL库USART接收Buffer
 
 /*用于openmv的数据接收，USART2*/
 u8 aRxBuffer2[1], usart2_rxbuffer[2];
-int32_t Position_X,Position_Y;  //目标位置的坐标
+int Position_X,Position_Y;  //目标位置的坐标
 
 
 /**********************************************************************************************************************
@@ -132,6 +132,7 @@ void UsmartScan(void)
 
 void OpenmvDataReceive(void)
 {
+    
     static uint8_t count=0,Usart_Flag_1,Usart_Flag_2;
     if(Usart_Flag_2 == 1)
     {

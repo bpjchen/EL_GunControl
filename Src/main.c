@@ -30,6 +30,8 @@
 #include "APPInteraction.h"
 #include "stdio.h"
 #include "Control.h"
+#include "oled.h"
+#include "show.h"
 
 /* USER CODE END Includes */
 
@@ -106,6 +108,7 @@ int main(void)
   HAL_TIM_PWM_Start(&htim3,TIM_CHANNEL_3);  //开启定时器3、通道3，频率50Hz，产生周期为20ms的脉冲，用于舵机的控制
   HAL_TIM_PWM_Start(&htim3,TIM_CHANNEL_4);  //开启定时器3、通道4，频率50Hz，产生周期为20ms的脉冲，用于舵机的控制
   APPInteractionInit();
+  OLED_Init();//初始化OLED	
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -126,6 +129,11 @@ int main(void)
 //          Position_Y=usart2_rxbuffer[1];
 //          
 //          printf("\n\rPosition_X is:%d,Position_Y is:%d\n\r",Position_X,Position_Y);
+      }
+      if(Show)
+      {
+          Show = 0;
+          oled_show();
       }
   }
   /* USER CODE END 3 */
@@ -176,14 +184,20 @@ void SystemClock_Config(void)
 /* USER CODE BEGIN 4 */
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
-    static uint16_t ms1 = 0;
+    static uint16_t ms1 = 0, ms10 = 0;
     if (htim->Instance == TIM14)
     {
         ms1++;
+        ms10++;
         if(ms1 >= 1) //1000Hz
         {
             ms1 = 0;
             Ctrl = 1;
+        }
+        if(ms10 >= 10)
+        {
+            ms10 = 0;
+            Show = 1;
         }
 //        printf("\n\r Hello!\n\r");
     }

@@ -16,6 +16,7 @@ extern u8 aRxBuffer[RXBUFFERSIZE];  //HAL库USART接收Buffer
 
 /*用于openmv的数据接收，USART2*/
 extern u8 aRxBuffer2[1], usart2_rxbuffer[2];
+extern int Position_X,Position_Y; 
 
 
 /*USMART调试组件初始化*/

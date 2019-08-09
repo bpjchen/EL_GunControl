@@ -70,6 +70,14 @@ void Error_Handler(void);
 #define KEY3_GPIO_Port GPIOF
 #define KEY4_Pin GPIO_PIN_15
 #define KEY4_GPIO_Port GPIOF
+#define DC_Pin GPIO_PIN_12
+#define DC_GPIO_Port GPIOB
+#define RST_Pin GPIO_PIN_13
+#define RST_GPIO_Port GPIOB
+#define SDA_Pin GPIO_PIN_14
+#define SDA_GPIO_Port GPIOB
+#define SCL_Pin GPIO_PIN_15
+#define SCL_GPIO_Port GPIOB
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */

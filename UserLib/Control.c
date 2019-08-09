@@ -12,11 +12,11 @@
 
 uint8_t Ctrl;
 
-//int16_t yaw_set;
 
 
 void SteeringEngineControl(void)
 {
+    
     if(HAL_GPIO_ReadPin(KEY0_GPIO_Port,KEY0_Pin)==GPIO_PIN_RESET)
     {
 //        HAL_GPIO_WritePin(LED0_GPIO_Port,LED0_Pin,GPIO_PIN_RESET);
@@ -57,13 +57,13 @@ void SteeringEngineControl(void)
         
     }
 
-    
 }
 
-//pitch:pitch轴角度值，为正数，范围为：0 ~ 37;
+//pitch:pitch轴角度值，为正数，范围为：0 ~ 30;
 //yaw:yaw轴角度值，正负都可以，范围为：-30 ~ 30;
 void Steering_Engine_Set_Value(int16_t pitch, int16_t yaw)
 {
+    
     int16_t pitch_t_1,pitch_t_2,yaw_t_1,yaw_t_2;
     pitch_t_1 = (int16_t)(480+11.1*pitch);
     yaw_t_1 = (int16_t)(1500+11.1*yaw);
@@ -77,8 +77,10 @@ void Steering_Engine_Set_Value(int16_t pitch, int16_t yaw)
 }
 
 
+/*yaw轴上下运动*/
 void Patrol_pattern_yaw(void)
 {
+    
     static int16_t yaw_t = 0,flag,yaw_t_1,yaw_t_2;
     
     if(yaw_t == 29)
@@ -97,7 +99,6 @@ void Patrol_pattern_yaw(void)
     {
         yaw_t++;
     }
-//    Steering_Engine_Set_Value(20,yaw_t);
     yaw_t_1 = (int16_t)(1500+11.1*yaw_t);
     yaw_t_2 = Value_limit(yaw_t_1,1180,1820);
     __HAL_TIM_SetCompare(&htim3,TIM_CHANNEL_4,yaw_t_2);
@@ -107,8 +108,10 @@ void Patrol_pattern_yaw(void)
 }
 
 
+/*pitch轴左右运动*/
 void Patrol_pattern_pitch(void)
 {
+    
     static int16_t pitch_t = 0,flag,pitch_t_1,pitch_t_2;
     
      if(pitch_t == 29)
@@ -134,8 +137,10 @@ void Patrol_pattern_pitch(void)
     
 }
 
+
 int16_t Value_limit(int16_t input, int16_t min, int16_t max)
 { 
+    
     int16_t output;
     if(input < min)
     {

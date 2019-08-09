@@ -44,3 +44,5 @@ test1\main.o: ..\UserLib\USMART\usmart.h
 test1\main.o: ..\UserLib\USMART\usmart_str.h
 test1\main.o: D:\keil_MDK5.25\ARM\ARMCC\Bin\..\include\stdio.h
 test1\main.o: ..\UserLib\Control.h
+test1\main.o: ..\UserLib\oled.h
+test1\main.o: ..\UserLib\show.h
