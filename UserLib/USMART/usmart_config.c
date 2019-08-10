@@ -15,7 +15,7 @@
 /*********************************************************用户配置区********************************************************/
 //这下面要包含所用到的函数所申明的头文件(用户自己添加) 
 #include "Control.h"
-//#include "pid.h"
+#include "pid.h"
 								 
 
 //函数名列表初始化(用户自己添加)
@@ -28,7 +28,7 @@ struct _m_usmart_nametab usmart_nametab[]=
 #endif		    
 		
 //   (void*)set_moto_current1,"void set_moto_current1(CAN_HandleTypeDef *hcan,s16 iq1, s16 iq2, s16 iq3, s16 iq4)", 
-//   (void*)LED_Test,"void LED_Test(int flag)",
+   (void*)LED_Test,"void LED_Test(int flag)",
 //   (void*)pid_reset,"void pid_reset(uint32_t kp, uint32_t ki, uint32_t kd)",
    
         

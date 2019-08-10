@@ -40,3 +40,4 @@ test1\show.o: D:\keil_MDK5.25\ARM\ARMCC\Bin\..\include\stdbool.h
 test1\show.o: ..\UserLib\APPInteraction.h
 test1\show.o: ..\UserLib\USMART\usmart.h
 test1\show.o: ..\UserLib\USMART\usmart_str.h
+test1\show.o: ..\UserLib\Control.h

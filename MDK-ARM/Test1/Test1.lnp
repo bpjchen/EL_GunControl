@@ -28,6 +28,7 @@
 "test1\control.o"
 "test1\oled.o"
 "test1\show.o"
+"test1\key.o"
 "test1\usmart.o"
 "test1\usmart_config.o"
 "test1\usmart_str.o"

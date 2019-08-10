@@ -143,7 +143,7 @@ void OpenmvDataReceive(void)
 
             Position_X = usart2_rxbuffer[0];
             Position_Y = usart2_rxbuffer[1];
-            printf("\n\rPosition_X is:%d,Position_Y is:%d\n\r",Position_X,Position_Y);
+//            printf("\n\rPosition_X is:%d,Position_Y is:%d\n\r",Position_X,Position_Y);
             
             count = 0;
             Usart_Flag_1 = 0;

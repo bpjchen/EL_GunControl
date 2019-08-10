@@ -60,6 +60,8 @@ void Error_Handler(void);
 /* Private defines -----------------------------------------------------------*/
 #define LED0_Pin GPIO_PIN_9
 #define LED0_GPIO_Port GPIOF
+#define CO_1_Pin GPIO_PIN_5
+#define CO_1_GPIO_Port GPIOA
 #define KEY0_Pin GPIO_PIN_11
 #define KEY0_GPIO_Port GPIOF
 #define KEY1_Pin GPIO_PIN_12
@@ -78,6 +80,8 @@ void Error_Handler(void);
 #define SDA_GPIO_Port GPIOB
 #define SCL_Pin GPIO_PIN_15
 #define SCL_GPIO_Port GPIOB
+#define CO_2_Pin GPIO_PIN_7
+#define CO_2_GPIO_Port GPIOB
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */

@@ -128,13 +128,15 @@ int main(void)
 //		  Position_X=usart2_rxbuffer[0];
 //          Position_Y=usart2_rxbuffer[1];
 //          
-//          printf("\n\rPosition_X is:%d,Position_Y is:%d\n\r",Position_X,Position_Y);
+//          printf("\n\r Hello! \n\r");
       }
       if(Show)
       {
           Show = 0;
           oled_show();
       }
+//      HAL_GPIO_WritePin(CO_2_GPIO_Port,CO_2_Pin,GPIO_PIN_SET);//´ò¿ª¼ÌµçÆ÷2
+//      HAL_GPIO_WritePin(LED0_GPIO_Port,LED0_Pin,GPIO_PIN_RESET);
   }
   /* USER CODE END 3 */
 }
@@ -199,7 +201,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
             ms10 = 0;
             Show = 1;
         }
-//        printf("\n\r Hello!\n\r");
+
     }
     
 }

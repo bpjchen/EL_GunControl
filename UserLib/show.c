@@ -1,19 +1,31 @@
 #include "show.h"
 #include "APPInteraction.h"
+#include "Control.h"
 
 
 u8  Flag_Stop=1;
 uint8_t Show;
 
+//int test = -29;
+
+
 void oled_show(void)
 {                         
 //      if(Flag_Stop==0)OLED_ShowString(00,00,"Servo O-N");
 //      else            OLED_ShowString(00,00,"Servo OFF");
-    OLED_ShowString(00,20,"Position_X: ");
-    OLED_ShowNumber(80,20, Position_X,3,12);
+    OLED_ShowString(00,40,"Position_X: ");
+    OLED_ShowNumber(100,40, Position_X,3,12);
     
-    OLED_ShowString(00,30,"Position_Y: ");
-    OLED_ShowNumber(80,30, Position_Y,3,12);
+    OLED_ShowString(00,50,"Position_Y: ");
+    OLED_ShowNumber(100,50, Position_Y,3,12);
+    
+    OLED_ShowString(00,20,"Yaw angle: ");
+    OLED_ShowNumber(100,20, yaw_t,3,12);
+    
+    OLED_ShowString(00,30,"Pitch angle: ");
+    OLED_ShowNumber(100,30, pitch_t,3,12);
+    
+//    OLED_ShowNumber(100,00, test,3,12);
 //			OLED_ShowNumber(100,00, PS2_KEY,3,12);  //PS2的数据
 // 		//=============显示PS2的状态=======================//	
 //			OLED_ShowString(00,10,"LY");
