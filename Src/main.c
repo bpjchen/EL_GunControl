@@ -32,6 +32,7 @@
 #include "Control.h"
 #include "oled.h"
 #include "show.h"
+#include "key.h"
 
 /* USER CODE END Includes */
 
@@ -107,8 +108,8 @@ int main(void)
   HAL_TIM_Base_Start_IT(&htim14);  //使能TIM14中断，溢出时间为1ms
   HAL_TIM_PWM_Start(&htim3,TIM_CHANNEL_3);  //开启定时器3、通道3，频率50Hz，产生周期为20ms的脉冲，用于舵机的控制
   HAL_TIM_PWM_Start(&htim3,TIM_CHANNEL_4);  //开启定时器3、通道4，频率50Hz，产生周期为20ms的脉冲，用于舵机的控制
-  APPInteractionInit();
-  OLED_Init();//初始化OLED	
+  APPInteractionInit();  //在线调参初始化
+  OLED_Init();  //初始化OLED	
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -118,25 +119,20 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-      if(Ctrl) //1000Hz
+      if(Ctrl) //1000Hz，主要用于舵机的控制和角度值的设定
       {
           Ctrl = 0;
-          SteeringEngineControl();
-          
-//          if(Usart_Flag==0 )  memcpy(rxbuf,Urxbuf,2*sizeof(u8));	//接收完成   复制Urxbuf数组中的数据到rxbuf
-		  
-//		  Position_X=usart2_rxbuffer[0];
-//          Position_Y=usart2_rxbuffer[1];
-//          
-//          printf("\n\r Hello! \n\r");
+          SteeringEngineControl();  //舵机控制
+          SetValue();  //按键设值
+          set_pitch_yaw_value();  //分别对两个舵机进行赋值
+
       }
-      if(Show)
+      if(Show)  //100Hz，用于OLED的显示
       {
           Show = 0;
           oled_show();
       }
-//      HAL_GPIO_WritePin(CO_2_GPIO_Port,CO_2_Pin,GPIO_PIN_SET);//打开继电器2
-//      HAL_GPIO_WritePin(LED0_GPIO_Port,LED0_Pin,GPIO_PIN_RESET);
+
   }
   /* USER CODE END 3 */
 }
@@ -196,7 +192,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
             ms1 = 0;
             Ctrl = 1;
         }
-        if(ms10 >= 10)
+        if(ms10 >= 10)  //100Hz
         {
             ms10 = 0;
             Show = 1;

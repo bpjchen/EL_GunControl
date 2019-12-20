@@ -14,7 +14,6 @@
 #include "stdio.h"
 
 
-//u8 Urxbuf[2],rxbuf[2],Usart_Flag;
 
 u8  USART_RX_BUF[USART_REC_LEN];  //接收缓冲,最大USART_REC_LEN个字节.末字节为换行符 
 u16 USART_RX_STA = 0;  //接收状态标记	
@@ -129,7 +128,7 @@ void UsmartScan(void)
 }
 
 
-
+/*Openmv数据的接收*/
 void OpenmvDataReceive(void)
 {
     

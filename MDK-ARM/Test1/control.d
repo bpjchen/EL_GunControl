@@ -38,3 +38,4 @@ test1\control.o: D:\keil_MDK5.25\ARM\ARMCC\Bin\..\include\string.h
 test1\control.o: D:\keil_MDK5.25\ARM\ARMCC\Bin\..\include\stdbool.h
 test1\control.o: ../Inc/main.h
 test1\control.o: ../Inc/tim.h
+test1\control.o: ..\UserLib\key.h

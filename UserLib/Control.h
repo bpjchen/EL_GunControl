@@ -4,11 +4,6 @@
 #include "mytype.h"
 
 
-#define PITCH_MIN_ANGLE  480;
-#define PITCH_MAX_ANGLE  800;
-#define YAW_MIN_ANGLE  1180;
-#define YAW_MAX_ANGLE  1820;
-
 extern uint8_t Ctrl;
 extern int16_t yaw_t;
 extern int16_t pitch_t;

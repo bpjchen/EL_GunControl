@@ -80,6 +80,16 @@ void Error_Handler(void);
 #define SDA_GPIO_Port GPIOB
 #define SCL_Pin GPIO_PIN_15
 #define SCL_GPIO_Port GPIOB
+#define SET_DATA_5_Pin GPIO_PIN_7
+#define SET_DATA_5_GPIO_Port GPIOG
+#define SET_DATA_4_Pin GPIO_PIN_6
+#define SET_DATA_4_GPIO_Port GPIOC
+#define SET_DATA_3_Pin GPIO_PIN_8
+#define SET_DATA_3_GPIO_Port GPIOC
+#define SET_DATA_2_Pin GPIO_PIN_8
+#define SET_DATA_2_GPIO_Port GPIOA
+#define SET_DATA_1_Pin GPIO_PIN_12
+#define SET_DATA_1_GPIO_Port GPIOA
 #define CO_2_Pin GPIO_PIN_7
 #define CO_2_GPIO_Port GPIOB
 /* USER CODE BEGIN Private defines */
